@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GAPOSA News</string>
+    <string name="avatar">Avatar</string>
+    <string name="posted">Posted :</string>
+    <string name="by">By </string>
+    <string name="search_hint">Search Here...</string>
+    <string name="network_error">Check network connection</string>
+    <string name="no_news_found">No news found</string>
+</resources>
