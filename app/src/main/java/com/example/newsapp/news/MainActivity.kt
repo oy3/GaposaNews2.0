@@ -11,12 +11,13 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
+import android.util.Log
 import android.view.*
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.newsapp.News
-import com.example.newsapp.NewsApi
+import com.example.newsapp.data.News
+import com.example.newsapp.data.NewsApi
 import com.example.newsapp.R
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 if (newText!!.isNotEmpty()) {
                     getFilter(newText)
                 } else {
-
+                    refreshNews()
                 }
 
                 return true
@@ -140,14 +141,15 @@ class MainActivity : AppCompatActivity() {
                     adapter.updateNews(response.body()!!)
                 }
 //                txtError.text = ""
-                txtError.visibility=View.GONE
+                txtError.visibility = View.GONE
                 mSwipeRefreshLayout.isRefreshing = false
             }
 
             override fun onFailure(call: Call<List<News>>, t: Throwable) {
 //                Toast.makeText(this@MainActivity, "Check network connection", Toast.LENGTH_SHORT).show()
-              Snackbar.make(main_view, "Check network connection", Snackbar.LENGTH_LONG).show()
-               txtError.setText("No news found")
+                Snackbar.make(main_view, "Check network connection", Snackbar.LENGTH_LONG).show()
+                txtError.setText("No news found")
+//                txtError.setText(t.localizedMessage)
 //                onSNACK(main_view)
                 mSwipeRefreshLayout.isRefreshing = false
             }
@@ -162,7 +164,6 @@ class MainActivity : AppCompatActivity() {
 //            onSNACK(main_view)
             Snackbar.make(main_view, "Check network connection", Snackbar.LENGTH_LONG).show()
             txtError.setText("No news found")
-
         }
     }
 
@@ -192,5 +193,9 @@ class MainActivity : AppCompatActivity() {
         textView.setTextColor(Color.WHITE)
         textView.textSize = 20f
         snackbar.show()
+    }
+
+    companion object {
+        val TAG = MainActivity::class.java.name
     }
 }

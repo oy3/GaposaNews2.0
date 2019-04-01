@@ -4,10 +4,10 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.example.newsapp.News
+import com.example.newsapp.data.News
 import com.example.newsapp.NewsDetailActivity
 import com.example.newsapp.R
-import com.example.newsapp.inflate
+import com.example.newsapp.data.inflate
 import kotlinx.android.synthetic.main.list_item_repo.view.*
 
 class NewsAdapter(val context: Context) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {

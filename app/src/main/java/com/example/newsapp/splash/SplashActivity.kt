@@ -1,8 +1,9 @@
-package com.example.newsapp
+package com.example.newsapp.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.newsapp.R
 import com.example.newsapp.news.MainActivity
 import java.lang.Exception
 

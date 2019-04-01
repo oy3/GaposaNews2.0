@@ -4,6 +4,8 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.example.newsapp.data.News
+import com.example.newsapp.data.inflate
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_news_detail.view.*
 
