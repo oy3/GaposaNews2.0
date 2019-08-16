@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "107056039149",
+    "firebase_url": "https://gaposanews.firebaseio.com",
+    "project_id": "gaposanews",
+    "storage_bucket": "gaposanews.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107056039149:android:6bd10cff4af98295",
+        "android_client_info": {
+          "package_name": "com.example.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107056039149-f3hv4ftv0llkfru5v8fp2ara8q9ssice.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.newsapp",
+            "certificate_hash": "f5131d51b3bb3c0b167d94704f1144c47442821b"
+          }
+        },
+        {
+          "client_id": "107056039149-gkcbl8j7bfc84dvj01ckuijqqrcm4ops.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSepUf7nTibUi6LhwEDt5zA5ewfsIHg30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107056039149-gkcbl8j7bfc84dvj01ckuijqqrcm4ops.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
