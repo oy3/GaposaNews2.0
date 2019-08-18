@@ -24,35 +24,35 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <LinearLayout
-            android:id="@+id/progressLoading"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:visibility="gone">
-        <!--<ProgressBar-->
-        <!--style="?android:attr/progressBarStyleHorizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:id="@+id/progressBar"-->
-        <!--android:indeterminate="true"/>-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/progressLoading"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:visibility="gone">-->
+    <!--&lt;!&ndash;<ProgressBar&ndash;&gt;-->
+    <!--&lt;!&ndash;style="?android:attr/progressBarStyleHorizontal"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="100dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/progressBar"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:indeterminate="true"/>&ndash;&gt;-->
 
-        <com.github.ybq.android.spinkit.SpinKitView
-                android:id="@+id/spin_kit"
-                style="@style/SpinKitView.Large.FadingCircle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:SpinKit_Color="@color/colorAccent"
-                android:layout_marginEnd="50dp"
-                android:layout_marginStart="50dp"/>
-        <TextView
-                android:text="Loading news..."
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView" android:layout_marginTop="32dp" android:textSize="20sp"/>
-    </LinearLayout>
+    <!--<com.github.ybq.android.spinkit.SpinKitView-->
+    <!--android:id="@+id/spin_kit"-->
+    <!--style="@style/SpinKitView.Large.FadingCircle"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--app:SpinKit_Color="@color/colorAccent"-->
+    <!--android:layout_marginEnd="50dp"-->
+    <!--android:layout_marginStart="50dp"/>-->
+    <!--<TextView-->
+    <!--android:text="Loading news..."-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/textView" android:layout_marginTop="32dp" android:textSize="20sp"/>-->
+    <!--</LinearLayout>-->
 
 
     <LinearLayout
@@ -76,5 +76,32 @@
                 android:textStyle="bold"
                 android:gravity="center"/>
     </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/httpError"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="visible">
+
+        <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp" app:srcCompat="@drawable/cloud_error" android:id="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+                tools:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/httpErrorTxt"
+                android:padding="20dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteY="20dp"
+                tools:layout_editor_absoluteX="20dp"
+                android:textSize="24sp" android:textColor="@android:color/holo_red_dark" android:textAllCaps="true"/>
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class NetworkService {
     private var service: NewsApi
@@ -36,6 +37,8 @@ class NetworkService {
     private fun provideOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(provideLoggingInterceptor())
+        httpClient.connectTimeout(60,TimeUnit.SECONDS)
+        httpClient.readTimeout(60, TimeUnit.SECONDS)
         return httpClient.build()
     }
 

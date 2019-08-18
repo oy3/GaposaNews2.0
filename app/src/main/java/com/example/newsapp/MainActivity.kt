@@ -2,11 +2,13 @@ package com.example.newsapp
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,12 +16,15 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.Window
 import android.widget.EditText
 import android.widget.Toast
 import com.example.gaposanews.NewsAdapter
 import com.example.newsapp.data.NetworkService
 import com.example.newsapp.data.News
+import com.github.ybq.android.spinkit.style.WanderingCubes
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_loading.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +35,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
+    lateinit var dialog: AlertDialog
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -59,7 +65,8 @@ class MainActivity : AppCompatActivity() {
                 })
 
                 Handler().postDelayed({
-                    progressLoading.visibility = View.GONE
+                    //                    progressLoading.visibility = View.GONE
+                    dialog.dismiss()
                     val newsList = response.body()
                     backupList = response.body()
                     adapter.updateNews(newsList!!)
@@ -69,7 +76,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onFailure(call: Call<List<News>>, t: Throwable) {
-            Timber.e(t, "Problem calling Movies API")
+            Timber.e(t, "Problem calling News API")
+            dialog.dismiss()
+            httpError.visibility = View.VISIBLE
+            httpErrorTxt.text = "It is us, it is not you."
         }
     }
 
@@ -105,6 +115,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkConnectivity() {
+        httpError.visibility = View.GONE
         val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         val isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting
@@ -134,11 +145,19 @@ class MainActivity : AppCompatActivity() {
 
 
             }
-            progressLoading.visibility = View.GONE
+//            progressLoading.visibility = View.GONE
+            dialog.dismiss()
         } else {
             errorView.visibility = View.GONE
             if (adapter.itemCount == 0) {
-                progressLoading.visibility = View.VISIBLE
+
+//                progressLoading.visibility = View.VISIBLE
+                loadingDialog()
+
+//                if (dialog.isShowing){
+//                    dialog.dismiss()
+//                }
+
             } else {
                 Snackbar.make(main_view, "Please wait while we refresh your feed...", Snackbar.LENGTH_LONG)
                     .show()
@@ -149,6 +168,21 @@ class MainActivity : AppCompatActivity() {
             }, 3000)
 
         }
+    }
+
+    private fun loadingDialog() {
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.layout_loading, null)
+        builder.setView(view)
+        builder.setCancelable(false)
+
+        view.txtMessage.text = "Loading news..."
+
+        dialog = builder.create()
+        dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialog.show()
     }
 
 
